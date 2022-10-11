@@ -21,6 +21,6 @@ yarn lint
 ```
 
 ### What I used
-composition api
-ref
+- composition api
+- ref
 
