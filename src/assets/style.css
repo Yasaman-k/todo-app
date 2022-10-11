@@ -4,6 +4,12 @@ body {
     background-color: rgb(231, 228, 178);
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 input {
     background: none;
     border: 2px solid black;
@@ -30,4 +36,5 @@ label {
 
 button {
     background: none;
+    border: none;
 }

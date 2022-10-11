@@ -1,27 +1,42 @@
 <template>
   <div class="container">
-    <header>
-      <h2 class="title2">Create Task</h2>
-      <button class="title2">Done</button>
-    </header>
-    <div class="task-detail">
-      <input placeholder="Add Title ... " name="newTitle" />
-      <textarea placeholder="Add Note ... " />
-    </div>
+    <form @submit.prevent="saveNewTask">
+      <header>
+        <h2 class="title2">Create Task</h2>
+        <button class="title2">Done</button>
+      </header>
+
+      <div class="task-detail">
+        <input placeholder="Add Title ... " type="text" name="newTitle" />
+        <textarea placeholder="Add Note ... " />
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'App',
+  // name: 'App',
+  setup() {
+    function saveNewTask() {
+      console.log("form ins submitted");
+    }
+    return {
+      saveNewTask
+    }
+  }
 }
 </script>
 
+
+
+<!-- style css-->
 <style>
 .container {
   margin: 4rem 1rem;
 }
+
 .title2 {
   display: inline;
   padding: 5px 16px;
@@ -60,7 +75,7 @@ input {
 }
 
 button {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 24px;
 }
 
@@ -68,6 +83,5 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
 }
 </style>
