@@ -1,0 +1,33 @@
+body {
+    margin: auto;
+    max-width: 700px;
+    background-color: rgb(231, 228, 178);
+}
+
+input {
+    background: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+label {
+    margin-right: 10px;
+}
+
+textarea {
+    background: none;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+label {
+    font-size: 22px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 4px 12px;
+}
+
+button {
+    background: none;
+}
