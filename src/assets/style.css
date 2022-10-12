@@ -1,5 +1,5 @@
 body {
-    margin: auto;
+    margin: 6rem auto;
     max-width: 700px;
     background-color: rgb(231, 228, 178);
 }
@@ -37,4 +37,56 @@ label {
 button {
     background: none;
     border: none;
+}
+
+form {
+    margin: 2rem 0;
+}
+
+ul {
+    margin: 2rem 0;
+    list-style: none;
+    font-size: 20px;
+}
+
+
+input[type="checkbox"] {
+    /* margin: 0 20px 0 0; */
+    width: 1rem;
+
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    padding: 0;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgb(231, 228, 178);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    background-color: black;
+    box-shadow: inset 1em 1em rgb(128, 128, 20);
 }
