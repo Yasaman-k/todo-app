@@ -14,6 +14,8 @@
       </div>
     </form>
     <h1 class="title2">tasks :</h1>
+    <button class="title2" @click="removeAllTasks">remove all tasks</button>
+    <button class="title2" @click="markAllDone">Mark all Done</button>
     <ul>
       <li v-for="(todo, index) in titleTasks" :key="todo.id">
         <div>
@@ -51,18 +53,31 @@ export default {
       titleTasks.value.splice(index, 1)
     }
 
+    function markAllDone() {
+      titleTasks.value.forEach((todo) => {
+        todo.done = true
+      })
+    }
+
+    function removeAllTasks() {
+      // titleTasks.value = [];
+      titleTasks.value.length = 0;
+    }
+
     return {
       saveNewTask,
       newTask,
       titleTasks,
       toggleDone,
-      removeTask
+      removeTask,
+      markAllDone,
+      removeAllTasks
     }
   }
 }
 </script>
 
-
+<!--24.20-->
 
 <!-- style css-->
 <style>
