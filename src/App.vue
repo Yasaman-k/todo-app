@@ -35,7 +35,9 @@ export default {
   setup() {
     const newTask = ref('');
     const titleTasks = ref([]);
+
     function saveNewTask() {
+      
       titleTasks.value.push({
         id: Date.now(),
         done: false,
@@ -77,14 +79,9 @@ export default {
 }
 </script>
 
-<!--24.20-->
-
 <!-- style css-->
 <style>
 .delete {
-  background-color: brown;
-  padding: 5px;
-  border-radius: 10px;
   margin-left: 20px;
   cursor: pointer;
 }
@@ -124,11 +121,13 @@ textarea {
   margin-top: 2rem;
   height: 10rem;
   resize: none;
-  padding: 10px 5px;
+  padding: 5px 10px;
+  font-size: large;
+  letter-spacing: 0.7px;
 }
 
 input {
-  padding: 10px 5px;
+  padding: 5px 10px;
 }
 
 button {
