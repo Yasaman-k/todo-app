@@ -36,14 +36,41 @@ export default {
     const newTask = ref('');
     const titleTasks = ref([]);
 
-    function saveNewTask() {
-      
+    const saveNewTask = async () => {
       titleTasks.value.push({
         id: Date.now(),
         done: false,
         content: newTask.value,
       });
+      // save data
+      postData('http://localhost:3000/tasks', {
+        id: Date.now(),
+        done: false,
+        content: newTask.value,
+      })
+        .then((data) => {
+          console.log(data);
+        })
+
       newTask.value = ''; // to clearing input after submit form
+    }
+
+
+    const postData = async (url = '', data = {}) => {
+      const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data)
+      })
+      return response.json()
     }
 
     // to done the task
@@ -75,7 +102,17 @@ export default {
       markAllDone,
       removeAllTasks
     }
-  }
+  },
+  mounted() {
+    fetch('http://localhost:3000/tasks')
+      .then((res) => res.json())
+      .then((data) => {
+        this.titleTasks = data
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  },
 }
 </script>
 
