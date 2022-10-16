@@ -20,8 +20,12 @@ yarn build
 yarn lint
 ```
 
+### run server 
+```
+yarn server
+```
+
 ### What I used
 - composition api
 - ref
-
-!
+- json-server to save data in json files
