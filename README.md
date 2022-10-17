@@ -10,16 +10,6 @@ yarn install
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
 ### run server 
 ```
 yarn server
@@ -29,3 +19,6 @@ yarn server
 - composition api
 - ref
 - json-server to save data in json files
+
+### Challenges
+- automaticlly refresh page when crud data
