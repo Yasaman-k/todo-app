@@ -5,14 +5,16 @@
     <form @submit.prevent="saveNewTask">
       <header>
         <h2 class="title2">Create Task</h2>
-        <button class="title2">Done</button>
+        <button type="submit" class="title2">Done</button>
+        <button class="title2" type="reset">clear</button>
       </header>
 
       <div class="task-detail">
         <input v-model="newTask" placeholder="Add Title ... " type="text" />
         <textarea placeholder="Add Note ... " />
         <select v-model="selected">
-          <option v-for="(cat) in categories" :key="cat.id" :value="cat.title">
+          <option selected value="" :key="0">Please select one ...</option>
+          <option v-for="(cat) in categoriesData" :key="cat.id" :value="cat.title">
             {{cat.title}}
           </option>
         </select>
@@ -41,22 +43,9 @@
 
 <script>
 import { ref } from 'vue';
-import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const store = useStore()
-    const loadData = () => {
-      store.dispatch('fetchData')
-    }
-    const fetchData = () => {
-      fetch('http://localhost:3000/categories')
-        .then((res) => res.json())
-        .then((data) => {
-          // this.categories = data
-          return data
-        })
-    }
 
     const selected = ref('')
     const newTask = ref('');
@@ -161,12 +150,23 @@ export default {
       newCategory,
       addCategory,
       categories,
-      selected,
-      fetchData,
-      loadData
+      selected
     }
   },
+  methods: {
+    fetchPosts() {
+      fetch("http://localhost:3000/categories")
+        .then(response => response.json())
+        .then(data => (this.categoriesData = data));
+    },
+  },
+  data() {
+    return {
+      categoriesData: []
+    };
+  },
   mounted() {
+    this.fetchPosts();
     fetch('http://localhost:3000/tasks')
       .then((res) => res.json())
       .then((data) => {

@@ -18,7 +18,7 @@ yarn server
 ### What I used
 - composition api
 - ref
-- json-server to save data in json files
+- json-server to save data in json files and Fake REST API
 
 ### Challenges
 - automaticlly refresh page when crud data
