@@ -11,6 +11,11 @@
       <div class="task-detail">
         <input v-model="newTask" placeholder="Add Title ... " type="text" />
         <textarea placeholder="Add Note ... " />
+        <select v-model="selected">
+          <option v-for="(cat) in categories" :key="cat.id" :value="cat.title">
+            {{cat.title}}
+          </option>
+        </select>
       </div>
     </form>
     <h1 class="title2">tasks :</h1>
@@ -22,20 +27,42 @@
           <input type="checkbox" @click="toggleDone(todo)" />
           <h3 :class="{done : todo.done}">{{todo.content}}</h3>
           <h3 :class="{done : todo.done}">{{todo.date}}</h3>
+          <h3 :class="{done : todo.done}"> // {{todo.category}}</h3>
           <button class="delete" @click="deleteTask(todo.id)">🚮</button>
         </div>
       </li>
     </ul>
   </div>
+  <form @submit.prevent="addCategory">
+    <button class="title2">add category</button>
+    <input type="text" v-model="newCategory" />
+  </form>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useStore } from 'vuex'
 
 export default {
   setup() {
+    const store = useStore()
+    const loadData = () => {
+      store.dispatch('fetchData')
+    }
+    const fetchData = () => {
+      fetch('http://localhost:3000/categories')
+        .then((res) => res.json())
+        .then((data) => {
+          // this.categories = data
+          return data
+        })
+    }
+
+    const selected = ref('')
     const newTask = ref('');
+    const newCategory = ref('');
     const titleTasks = ref([]);
+    const categories = ref([])
     const url = 'http://localhost:3000/tasks'
 
     const saveNewTask = async () => {
@@ -43,16 +70,17 @@ export default {
         date: new Date().toDateString(),
         done: false,
         content: newTask.value,
+        category: selected.value
       });
       // save data
       postData('http://localhost:3000/tasks', {
         date: new Date().toDateString(),
         done: false,
         content: newTask.value,
+        category: selected.value
       })
-        .then((data) => {
-          console.log(data);
-        })
+      // .then((data) => {
+      // })
 
       newTask.value = ''; // to clearing input after submit form
     }
@@ -113,6 +141,15 @@ export default {
       titleTasks.value.length = 0;
     }
 
+    const addCategory = () => {
+      // categories.value.push({
+      //   tilte: newCategory.value
+      // })
+      postData('http://localhost:3000/categories', {
+        title: newCategory.value
+      })
+    }
+
     return {
       saveNewTask,
       newTask,
@@ -120,7 +157,13 @@ export default {
       toggleDone,
       deleteTask,
       markAllDone,
-      removeAllTasks
+      removeAllTasks,
+      newCategory,
+      addCategory,
+      categories,
+      selected,
+      fetchData,
+      loadData
     }
   },
   mounted() {
@@ -129,10 +172,19 @@ export default {
       .then((data) => {
         this.titleTasks = data
       })
-      .catch((err) => {
-        console.log(err);
+    // .catch((err) => {
+    //   console.log(err);
+    // })
+
+    fetch('http://localhost:3000/categories')
+      .then((res) => res.json())
+      .then((data) => {
+        this.categories = data
       })
-  },
+    // .catch((err) => {
+    // })
+
+  }
 }
 </script>
 
@@ -164,27 +216,18 @@ export default {
 }
 
 .task-detail {
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   width: 70%;
 }
 
-.task-detail div {
-  margin-top: 3rem;
+.task-detail * {
+  margin-top: 2rem;
 }
 
 textarea {
-  margin-top: 2rem;
   height: 10rem;
   resize: none;
-  padding: 5px 10px;
-  font-size: large;
-  letter-spacing: 0.7px;
-}
-
-input {
-  padding: 5px 10px;
 }
 
 button {
