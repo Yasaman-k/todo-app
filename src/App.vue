@@ -17,11 +17,12 @@
     <button class="title2" @click="removeAllTasks">remove all tasks</button>
     <button class="title2" @click="markAllDone">Mark all Done</button>
     <ul>
-      <li v-for="(todo, index) in titleTasks" :key="todo.id">
+      <li v-for="(todo) in titleTasks" :key="todo.id">
         <div>
           <input type="checkbox" @click="toggleDone(todo)" />
           <h3 :class="{done : todo.done}">{{todo.content}}</h3>
-          <button class="delete" @click="removeTask(index)">🚮</button>
+          <h3 :class="{done : todo.done}">{{todo.date}}</h3>
+          <button class="delete" @click="deleteTask(todo.id)">🚮</button>
         </div>
       </li>
     </ul>
@@ -35,16 +36,17 @@ export default {
   setup() {
     const newTask = ref('');
     const titleTasks = ref([]);
+    const url = 'http://localhost:3000/tasks'
 
     const saveNewTask = async () => {
       titleTasks.value.push({
-        id: Date.now(),
+        date: new Date().toDateString(),
         done: false,
         content: newTask.value,
       });
       // save data
       postData('http://localhost:3000/tasks', {
-        id: Date.now(),
+        date: new Date().toDateString(),
         done: false,
         content: newTask.value,
       })
@@ -55,20 +57,34 @@ export default {
       newTask.value = ''; // to clearing input after submit form
     }
 
-
     const postData = async (url = '', data = {}) => {
       const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
+      })
+      return response.json()
+    }
+
+    const deleteData = async (url = '', id) => {
+      const response = await fetch(url + '/' + id, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        // body: JSON.stringify(data)
       })
       return response.json()
     }
@@ -77,9 +93,13 @@ export default {
     function toggleDone(todo) {
       todo.done = !todo.done;
     }
+    // remove just delete it here but keep exist it,delete means delete it completely
+    function deleteTask(id) {
 
-    function removeTask(index) {
+      const index = titleTasks.value.findIndex(x => x.id === id)
       titleTasks.value.splice(index, 1)
+      deleteData(url, id)
+
     }
 
     function markAllDone() {
@@ -98,7 +118,7 @@ export default {
       newTask,
       titleTasks,
       toggleDone,
-      removeTask,
+      deleteTask,
       markAllDone,
       removeAllTasks
     }
