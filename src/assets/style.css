@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cambay&display=swap');
 
 body {
-    /* margin: 6rem auto;
-    max-width: 700px; */
     background-color: rgb(231, 228, 178);
 }
 
@@ -82,6 +80,10 @@ input[type="checkbox"]::before {
     box-shadow: inset 1em 1em rgb(231, 228, 178);
 }
 
+.removeUnderline {
+    text-decoration: none;
+}
+
 input[type="checkbox"]:checked::before {
     transform: scale(1);
     background-color: black;
@@ -102,4 +104,18 @@ input[type="checkbox"]:checked::before {
 
 .title2:hover {
     background-color: rgb(215, 215, 41);
+}
+
+
+li h3 {
+    margin-left: 10px;
+}
+
+li div {
+    display: flex;
+    align-items: center;
+}
+
+.done {
+    text-decoration: line-through;
 }

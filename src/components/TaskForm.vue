@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div>
         <!-- preventDefault for not refreshing page after submit-->
         <form @submit.prevent="saveNewTask">
             <div class="task-detail">
@@ -17,23 +17,8 @@
                 </div>
             </div>
         </form>
+        <!-- tasks -->
 
-        <hr/>
-        
-        <h1 class="title2">tasks :</h1>
-        <button class="title2" @click="removeAllTasks">remove all tasks</button>
-        <button class="title2" @click="markAllDone">Mark all Done</button>
-        <ul>
-            <li v-for="(todo) in titleTasks" :key="todo.id">
-                <div>
-                    <input type="checkbox" @click="toggleDone(todo)" />
-                    <h3 :class="{done : todo.done}">{{todo.content}}</h3>
-                    <h3 :class="{done : todo.done}">{{todo.date}}</h3>
-                    <h3 :class="{done : todo.done}"> // {{todo.category}}</h3>
-                    <button class="delete" @click="deleteTask(todo.id)">🚮</button>
-                </div>
-            </li>
-        </ul>
     </div>
     <form @submit.prevent="addCategory">
         <button class="title2">add category</button>
@@ -43,7 +28,6 @@
 
 <script>
 import { ref } from 'vue';
-
 export default {
     setup() {
 
@@ -112,11 +96,9 @@ export default {
         }
         // remove just delete it here but keep exist it,delete means delete it completely
         function deleteTask(id) {
-
             const index = titleTasks.value.findIndex(x => x.id === id)
             titleTasks.value.splice(index, 1)
             deleteData(url, id)
-
         }
 
         function markAllDone() {
@@ -172,18 +154,12 @@ export default {
             .then((data) => {
                 this.titleTasks = data
             })
-        // .catch((err) => {
-        //   console.log(err);
-        // })
 
         fetch('http://localhost:3000/categories')
             .then((res) => res.json())
             .then((data) => {
                 this.categories = data
             })
-        // .catch((err) => {
-        // })
-
     }
 }
 </script>
@@ -214,16 +190,4 @@ textarea {
     resize: none;
 }
 
-li h3 {
-    margin-left: 10px;
-}
-
-li div {
-    display: flex;
-    align-items: center;
-}
-
-.done {
-    text-decoration: line-through;
-}
 </style>

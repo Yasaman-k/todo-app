@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
     {
         path: "/",
+        name: "Home",
         components: {
             default: HomePage,
             home: HomePage,
@@ -13,6 +14,7 @@ const routes = [
     },
     {
         path: "/create-task",
+        name: "CreateTask",
         components: {
             default: TaskPage,
             createTask: TaskPage,
