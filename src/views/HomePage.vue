@@ -1,9 +1,17 @@
 <template>
-    <header>
-        <router-link class="title2" to="/create-task">
-            <h2>
+    <div>
+        <router-link class="removeUnderline"  to="/create-task" >
+            <h2 class="title2">
                 Create Task
             </h2>
         </router-link>
-    </header>
+    </div>
 </template>
+
+
+<style>
+.removeUnderline {
+    text-decoration: none;
+}
+
+</style>

@@ -1,8 +1,6 @@
 
 <template>
-    <h1>task page</h1>
-    <router-link to="/">Home</router-link>
-    <TaskForm/>
+    <TaskForm />
 </template>
 
 <script>
@@ -14,3 +12,6 @@ export default {
     }
 }
 </script>
+
+<style>
+</style>

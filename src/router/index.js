@@ -1,15 +1,30 @@
 import TaskPage from "../views/TaskPage.vue";
-import HomePage from "../views/HomePage.vue"
+import HomePage from "../views/HomePage.vue";
+import NotFound from "../views/NotFound.vue"
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
     {
         path: "/",
-        component: HomePage,
+        components: {
+            default: HomePage,
+            home: HomePage,
+        },
     },
     {
         path: "/create-task",
-        component: TaskPage,
+        components: {
+            default: TaskPage,
+            createTask: TaskPage,
+        },
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: "NotFound",
+        components: {
+            default: NotFound,
+            notFound: NotFound,
+        }
     },
 ];
 

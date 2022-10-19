@@ -1,14 +1,7 @@
 <template>
-    <div class="container">
+    <div class="">
         <!-- preventDefault for not refreshing page after submit-->
         <form @submit.prevent="saveNewTask">
-            <header>
-
-
-                <button type="submit" class="title2">Done</button>
-                <button class="title2" type="reset">clear</button>
-            </header>
-
             <div class="task-detail">
                 <input v-model="newTask" placeholder="Add Title ... " type="text" />
                 <textarea placeholder="Add Note ... " />
@@ -18,8 +11,15 @@
                         {{cat.title}}
                     </option>
                 </select>
+                <div class="button-group">
+                    <button type="submit" class="title2">Done</button>
+                    <button class="title2" type="reset">clear</button>
+                </div>
             </div>
         </form>
+
+        <hr/>
+        
         <h1 class="title2">tasks :</h1>
         <button class="title2" @click="removeAllTasks">remove all tasks</button>
         <button class="title2" @click="markAllDone">Mark all Done</button>
@@ -189,7 +189,7 @@ export default {
 </script>
 
 <!-- style css-->
-<style>
+<style scoped>
 .delete {
     margin-left: 20px;
     cursor: pointer;
@@ -197,22 +197,6 @@ export default {
 
 .container {
     margin: 1rem 1rem;
-}
-
-.title2 {
-    display: inline;
-    padding: 5px 16px;
-    border-bottom: 5px solid rgb(95, 102, 15);
-    border-radius: 10px;
-    text-shadow: 2px 2px rgb(103, 103, 10);
-    color: rgba(255, 255, 0, 0.514);
-    box-shadow: 0px 0px 3px 3px rgb(69, 73, 6);
-    cursor: pointer;
-    background-color: rgb(214, 214, 140);
-}
-
-.title2:hover {
-    background-color: rgb(215, 215, 41);
 }
 
 .task-detail {
@@ -230,11 +214,6 @@ textarea {
     resize: none;
 }
 
-button {
-    font-weight: 700;
-    font-size: 24px;
-}
-
 li h3 {
     margin-left: 10px;
 }
@@ -242,12 +221,6 @@ li h3 {
 li div {
     display: flex;
     align-items: center;
-}
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .done {
