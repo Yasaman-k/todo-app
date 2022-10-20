@@ -14,9 +14,13 @@
                         <input type="checkbox" @click="toggleDone(todo)" />
                         <h3 :class="{done : todo.done}">{{todo.content}}</h3>
                         <h3 :class="{done : todo.done}">{{todo.date}}</h3>
-                        <h3 :class="{done : todo.done}"> {{todo.category}}</h3>
-                        <button class="delete" @click="deleteTask(todo.id)">
-                        <img src="../assets/img/eraser-64.png" ></button>
+                        <h3 :class="{done : todo.done}">{{todo.category}}</h3>
+                        <button class="delete" @click="confirmDelete">
+                            <img src="../assets/img/eraser-64.png">
+                        </button>
+                        <button class="edit">
+                            <img src="../assets/img/pencil-96.png">
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -31,14 +35,27 @@
     display: flex;
     justify-content: space-between;
 }
+
 .delete {
     margin-left: 20px;
     cursor: pointer;
 }
 
+.edit {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.edit img {
+    width: 36px;
+    height: auto;
+}
+
 .delete img {
     width: 36px;
+    height: auto;
 }
+
 .button-group {
     display: flex;
     justify-content: end;
@@ -47,6 +64,7 @@
 
 <script >
 import { onMounted, ref } from 'vue';
+// import ConfirmDelete from '@/components/DeleteModal.vue'
 
 
 export default {
@@ -107,12 +125,18 @@ export default {
             })
             return response.json()
         }
+
+        // const confirmDelete = () => {
+        //     // model opens
+        //     // deleteTask(todo.id)
+        // }
         return {
             titleTasks,
             toggleDone,
             deleteTask,
             markAllDone,
             removeAllTasks,
+            // confirmDelete
         }
     },
     created() {

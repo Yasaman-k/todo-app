@@ -3,6 +3,7 @@
     <header>
       <div class="nav-link">
         <img src="./assets/img/icons8-todo-list-100.png" />
+        <img src="./assets/img/futurama-bender-48.png"/>
         <router-link class="title2 removeUnderline" to="/">Home</router-link>
       </div>
       <router-link class="removeUnderline" v-if="$route.name==='Home'" to="/create-task">
