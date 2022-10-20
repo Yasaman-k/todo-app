@@ -29,3 +29,11 @@ p {
     color: #966868;
 }
 </style>
+
+<script>
+export default {
+    // created() {
+    //     document.title = "404"
+    // }
+}
+</script>

@@ -1,6 +1,6 @@
 import TaskPage from "../views/TaskPage.vue";
 import HomePage from "../views/HomePage.vue";
-import NotFound from "../views/NotFound.vue"
+import NotFoundPage from "../views/NotFound.vue"
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -11,6 +11,7 @@ const routes = [
             default: HomePage,
             home: HomePage,
         },
+        meta: { title: 'TODO APP' }
     },
     {
         path: "/create-task",
@@ -19,21 +20,33 @@ const routes = [
             default: TaskPage,
             createTask: TaskPage,
         },
+        meta: { title: 'Create Task' }
     },
+    // this must be the last object
     {
         path: "/:catchAll(.*)",
         name: "NotFound",
         components: {
-            default: NotFound,
-            notFound: NotFound,
-        }
+            default: NotFoundPage,
+            notFound: NotFoundPage,
+        },
+        meta: { title: '404' }
     },
+    // {
+    //     path:"/:catchAll(.*)",
+    //     redirect:"/not-found"
+    // }
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
-    // history:createWebHashHistory(),
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    console.log(to);
+    document.title = to.meta.title;
+    next();
+  });
 
 export default router;

@@ -18,7 +18,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </template>
 
@@ -105,10 +104,9 @@ export default {
             markAllDone,
             removeAllTasks,
         }
-    }
+    },
+   created () {
+    // document.title=$
+   }
 }
-
-
-
-
 </script>
