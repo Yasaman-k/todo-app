@@ -107,11 +107,6 @@ export default {
             })
         }
 
-        function removeAllTasks() {
-            // titleTasks.value = [];
-            titleTasks.value.length = 0;
-        }
-
         const addCategory = () => {
             // categories.value.push({
             //   tilte: newCategory.value
@@ -128,7 +123,6 @@ export default {
             toggleDone,
             deleteTask,
             markAllDone,
-            removeAllTasks,
             newCategory,
             addCategory,
             categories,
@@ -166,11 +160,6 @@ export default {
 
 <!-- style css-->
 <style scoped>
-.delete {
-    margin-left: 20px;
-    cursor: pointer;
-}
-
 .container {
     margin: 1rem 1rem;
 }

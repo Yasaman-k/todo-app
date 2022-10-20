@@ -3,17 +3,20 @@
         <div>
             <p class="section2">click to show yearly tasks</p>
         </div>
-        <div class="section-right">
-            <button class="title2" @click="removeAllTasks">remove all tasks</button>
-            <button class="title2" @click="markAllDone">Mark all Done</button>
+        <div class="">
+            <div class="button-group">
+                <button class="title2" @click="removeAllTasks">remove all tasks</button>
+                <button class="title2" @click="markAllDone">Mark all Done</button>
+            </div>
             <ul>
                 <li v-for="todo in titleTasks" :key="todo.id">
                     <div>
                         <input type="checkbox" @click="toggleDone(todo)" />
                         <h3 :class="{done : todo.done}">{{todo.content}}</h3>
                         <h3 :class="{done : todo.done}">{{todo.date}}</h3>
-                        <h3 :class="{done : todo.done}"> // {{todo.category}}</h3>
-                        <button class="delete" @click="deleteTask(todo.id)">🚮</button>
+                        <h3 :class="{done : todo.done}"> {{todo.category}}</h3>
+                        <button class="delete" @click="deleteTask(todo.id)">
+                        <img src="../assets/img/eraser-64.png" ></button>
                     </div>
                 </li>
             </ul>
@@ -28,9 +31,17 @@
     display: flex;
     justify-content: space-between;
 }
+.delete {
+    margin-left: 20px;
+    cursor: pointer;
+}
 
-.section-right {
-align-items: flex-end;
+.delete img {
+    width: 36px;
+}
+.button-group {
+    display: flex;
+    justify-content: end;
 }
 </style>
 
@@ -59,7 +70,6 @@ export default {
         onMounted(() => {
             fetchData()
         })
-
 
         // to done the task
         function toggleDone(todo) {
@@ -105,8 +115,7 @@ export default {
             removeAllTasks,
         }
     },
-   created () {
-    // document.title=$
-   }
+    created() {
+    }
 }
 </script>
