@@ -36,7 +36,7 @@ export default {
         const newCategory = ref('');
         const titleTasks = ref([]);
         const categories = ref([])
-        const url = 'http://localhost:3000/tasks'
+        // const url = 'http://localhost:3000/tasks'
 
         const saveNewTask = async () => {
             titleTasks.value.push({
@@ -74,32 +74,32 @@ export default {
             return response.json()
         }
 
-        const deleteData = async (url = '', id) => {
-            const response = await fetch(url + '/' + id, {
-                method: 'DELETE',
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
-                // body: JSON.stringify(data)
-            })
-            return response.json()
-        }
+        // const deleteData = async (url = '', id) => {
+        //     const response = await fetch(url + '/' + id, {
+        //         method: 'DELETE',
+        //         mode: 'cors',
+        //         cache: 'no-cache',
+        //         credentials: 'same-origin',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         redirect: 'follow',
+        //         referrerPolicy: 'no-referrer',
+        //         // body: JSON.stringify(data)
+        //     })
+        //     return response.json()
+        // }
 
         // to done the task
         function toggleDone(todo) {
             todo.done = !todo.done;
         }
         // remove just delete it here but keep exist it,delete means delete it completely
-        function deleteTask(id) {
-            const index = titleTasks.value.findIndex(x => x.id === id)
-            titleTasks.value.splice(index, 1)
-            deleteData(url, id)
-        }
+        // const deleteTask = (id) => {
+        //     const index = titleTasks.value.findIndex(x => x.id === id)
+        //     titleTasks.value.splice(index, 1)
+        //     deleteData(url, id)
+        // }
 
         function markAllDone() {
             titleTasks.value.forEach((todo) => {
@@ -121,7 +121,6 @@ export default {
             newTask,
             titleTasks,
             toggleDone,
-            deleteTask,
             markAllDone,
             newCategory,
             addCategory,
@@ -158,7 +157,6 @@ export default {
 }
 </script>
 
-<!-- style css-->
 <style scoped>
 .container {
     margin: 1rem 1rem;
