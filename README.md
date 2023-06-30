@@ -33,4 +33,11 @@ https://www.figma.com/file/0wXp8Oo57T55CM6bmpK1G0/planing?node-id=0%3A1
 #### Bad ISSUE
 I Install vue-cli in node version 16.9.1 and later and I can not install tailwind this version so I decided to install ue in another version and make another project!
 ###
-### << End >>
+make this json file in route of project
+{
+"tasks":[{}]
+}
+
+###
+further fix problem:
+authomatically init database
