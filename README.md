@@ -35,7 +35,7 @@ I Install vue-cli in node version 16.9.1 and later and I can not install tailwin
 ###
 make this json file in route of project
 {
-"tasks":[{}]
+"tasks":[]
 }
 and name it db.json
 
