@@ -37,6 +37,7 @@ make this json file in route of project
 {
 "tasks":[{}]
 }
+and name it db.json
 
 ###
 further fix problem:
