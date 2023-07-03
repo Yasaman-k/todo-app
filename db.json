@@ -1,4 +1,67 @@
 {
   "tasks": [
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "quit smoking",
+      "category": "",
+      "id": 1
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "doulingo",
+      "category": "",
+      "id": 2
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "sport",
+      "category": "",
+      "id": 3
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "u",
+      "category": "",
+      "id": 4
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "yy",
+      "category": "",
+      "id": 5
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "ww",
+      "category": "",
+      "id": 6
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "EEE",
+      "category": "",
+      "id": 7
+    },
+    {
+      "date": "Mon Jul 03 2023",
+      "done": false,
+      "content": "QQ",
+      "category": "",
+      "mainCategory": "Habit",
+      "id": 8
+    }
+  ],
+  "categories": [
+    {
+      "title": "work",
+      "id": 1
+    }
   ]
 }
