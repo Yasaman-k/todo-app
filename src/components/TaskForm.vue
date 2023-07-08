@@ -5,10 +5,18 @@
             <div class="task-detail">
                 <input v-model="newTask" placeholder="Add Title ... " type="text" />
                 <textarea placeholder="Add Note ... " />
+              
                 <select v-model="selected">
                     <option selected value="" :key="0">Please select one ...</option>
                     <option v-for="(cat) in categoriesData" :key="cat.id" :value="cat.title">
                         {{cat.title}}
+                    </option>
+                </select>
+                <select v-model="selectedCat">
+                    <option selectedCat value="" :key="0">Please select one ...</option>
+                   
+                    <option v-for="(cat,index) in mainCategoriesData" :key="index" :value="cat">
+                        {{cat}}
                     </option>
                 </select>
                 <div class="button-group">
@@ -26,12 +34,15 @@
     </form>
 </template>
 
-<script>
+<script >
 import { ref } from 'vue';
 export default {
     setup() {
-
+        const mainCategoriesData = [
+            "Habit","Normal","daily","yearly"
+        ]
         const selected = ref('')
+        const selectedCat = ref('')
         const newTask = ref('');
         const newCategory = ref('');
         const titleTasks = ref([]);
@@ -43,14 +54,17 @@ export default {
                 date: new Date().toDateString(),
                 done: false,
                 content: newTask.value,
-                category: selected.value
+                category: selected.value,
+                mainCategory:selectedCat.value
+
             });
             // save data
             postData('http://localhost:3000/tasks', {
                 date: new Date().toDateString(),
                 done: false,
                 content: newTask.value,
-                category: selected.value
+                category: selected.value,
+                mainCategory:selectedCat.value
             })
             // .then((data) => {
             // })
@@ -59,6 +73,7 @@ export default {
         }
 
         const postData = async (url = '', data = {}) => {
+            console.log(data);
             const response = await fetch(url, {
                 method: 'POST',
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -125,7 +140,9 @@ export default {
             newCategory,
             addCategory,
             categories,
-            selected
+            selected,
+            mainCategoriesData,
+            selectedCat
         }
     },
     methods: {

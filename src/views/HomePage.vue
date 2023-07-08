@@ -12,15 +12,16 @@
                 <li v-for="todo in titleTasks" :key="todo.id">
                     <div>
                         <input type="checkbox" @click="toggleDone(todo)" />
-                        <h3 :class="{ done: todo.done }">{{ todo.content }}</h3>
-                        <h3 :class="{ done: todo.done }">{{ todo.date }}</h3>
-                        <h3 :class="{ done: todo.done }">{{ todo.category }}</h3>
+                        <p :class="{ done: todo.done }">{{ todo.content }}</p>
+                        <p :class="{ done: todo.done }">{{ todo.date }}</p>
+                        <p :class="{ done: todo.done }">{{ todo.category }}</p>
                         <button class="delete" @click="confirmDelete">
                             <img src="../assets/img/eraser-64.png">
                         </button>
                         <button class="edit">
                             <img src="../assets/img/pencil-96.png">
                         </button>
+                      <Timer/>
                     </div>
                 </li>
             </ul>
@@ -63,6 +64,7 @@
 </style>
 
 <script setup>
+import Timer from '../components/Timer.vue'
 import { onMounted, ref } from 'vue';
 // import ConfirmDelete from '@/components/DeleteModal.vue'
 
@@ -84,7 +86,7 @@ const fetchData = () => {
 }
 
 onMounted(() => {
-    fetchData()
+    fetchData()  
 })
 
 // to done the task
@@ -128,5 +130,4 @@ function removeAllTasks() {
 //     // model opens
 //     // deleteTask(todo.id)
 // }
-
 </script>
