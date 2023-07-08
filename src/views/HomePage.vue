@@ -21,8 +21,7 @@
                         <button class="edit">
                             <img src="../assets/img/pencil-96.png">
                         </button>
-                        <button @click="startTimer" class="cursor-pointer">start</button>
-                        {{ timerOutput }}
+                      <Timer/>
                     </div>
                 </li>
             </ul>
@@ -65,6 +64,7 @@
 </style>
 
 <script setup>
+import Timer from '../components/Timer.vue'
 import { onMounted, ref } from 'vue';
 // import ConfirmDelete from '@/components/DeleteModal.vue'
 
@@ -86,8 +86,7 @@ const fetchData = () => {
 }
 
 onMounted(() => {
-    fetchData()
-   
+    fetchData()  
 })
 
 // to done the task
@@ -131,25 +130,4 @@ function removeAllTasks() {
 //     // model opens
 //     // deleteTask(todo.id)
 // }
-const timerOutput = ref()
-//countdown
-const startTimer = () => {
-    const timeNow = new Date().getTime();
-    const timeDifference = 0;
-    const millisecondsInOneSecond = 1000;
-    const millisecondsInOneMinute = millisecondsInOneSecond * 60;
-    const millisecondsInOneHour = millisecondsInOneMinute * 60;
-    const millisecondsInOneDay = millisecondsInOneHour * 24;
-    const differenceInDays = timeDifference / millisecondsInOneDay;
-    const remainderDifferenceInHours = (timeDifference % millisecondsInOneDay) / millisecondsInOneHour;
-    const remainderDifferenceInMinutes = (timeDifference % millisecondsInOneHour) / millisecondsInOneMinute;
-    const remainderDifferenceInSeconds = (timeDifference % millisecondsInOneMinute) / millisecondsInOneSecond;
-  
-    const remainingHours =ref;
-    const remainingMinutes =0;
-    const remainingSeconds = 0;
-     setInterval(() => { startTimer() }, 1000);
-
-    timerOutput.value =  remainingHours + " Hours " + ": " + remainingMinutes + " Minutes " + ": " + remainingSeconds + " Seconds";
-}
 </script>

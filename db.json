@@ -36,25 +36,12 @@
       "id": 5
     },
     {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "ww",
-      "category": "",
-      "id": 6
+      "duration": "SS",
+      "id": 6,
+      "k": "SS"
     },
     {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "EEE",
-      "category": "",
-      "id": 7
-    },
-    {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "QQ",
-      "category": "",
-      "mainCategory": "Habit",
+      "duration": "0:1 ",
       "id": 8
     }
   ],
