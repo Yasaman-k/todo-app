@@ -7,9 +7,9 @@
         <router-link class="title2 removeUnderline" to="/">Home</router-link>
       </div>
       <router-link class="removeUnderline" v-if="$route.name==='Home'" to="/create-task">
-        <h2 class="title2">
+        <p class="title2">
           Create Task
-        </h2>
+        </p>
       </router-link>
     </header>
     <router-view name="home"></router-view>

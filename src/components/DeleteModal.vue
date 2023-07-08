@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>DO you sure to delete the task?</h1>
+        <p>DO you sure to delete the task?</p>
         <button>Yes!</button>
         <button>Cancel</button>
     </div>
