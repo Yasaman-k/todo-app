@@ -36,19 +36,32 @@
       "id": 5
     },
     {
-      "duration": "SS",
+      "duration": "0:0:5",
       "id": 6,
       "k": "SS"
     },
     {
       "duration": "0:1 ",
       "id": 8
+    },
+    {
+      "date": "Sun Jul 09 2023",
+      "done": false,
+      "content": "deutsch, perfekt",
+      "category": "language",
+      "mainCategory": "Habit",
+      "id": 9,
+      "duration": "0:47:15"
     }
   ],
   "categories": [
     {
       "title": "work",
       "id": 1
+    },
+    {
+      "title": "language",
+      "id": 2
     }
   ]
 }

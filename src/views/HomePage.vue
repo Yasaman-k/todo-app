@@ -21,7 +21,7 @@
                         <button class="edit">
                             <img src="../assets/img/pencil-96.png">
                         </button>
-                      <Timer/>
+                      <Timer :taskId="todo.id"/>
                     </div>
                 </li>
             </ul>
