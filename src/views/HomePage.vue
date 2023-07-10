@@ -1,8 +1,6 @@
 <template>
     <div class="container">
-        <div>
-            <p class="section2">click to show yearly tasks</p>
-        </div>
+
         <div class="">
             <div class="button-group">
                 <button class="title2" @click="removeAllTasks">remove all tasks</button>
@@ -26,7 +24,12 @@
                 </li>
             </ul>
         </div>
+       
     </div>
+    <div>
+            <p class="section2">click to show yearly tasks</p>
+            <Calendar/>
+        </div>
 </template>
 
 
@@ -65,6 +68,7 @@
 
 <script setup>
 import Timer from '../components/Timer.vue'
+import Calendar from '../components/Calendar.vue'
 import { onMounted, ref } from 'vue';
 // import ConfirmDelete from '@/components/DeleteModal.vue'
 
