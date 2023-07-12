@@ -1,57 +1,33 @@
 {
   "tasks": [
     {
-      "date": "Mon Jul 03 2023",
+      "date": "Mon Jul 10 2023",
       "done": false,
-      "content": "quit smoking",
-      "category": "",
+      "content": "deustch",
+      "category": "language",
+      "mainCategory": "daily",
       "id": 1
     },
     {
-      "date": "Mon Jul 03 2023",
+      "date": "Tue Jul 11 2023",
       "done": false,
-      "content": "doulingo",
+      "content": "deutsch",
       "category": "",
+      "mainCategory": "daily",
       "id": 2
-    },
+    }
+  ],
+  "calendar": [
     {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "sport",
-      "category": "",
-      "id": 3
-    },
-    {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "u",
-      "category": "",
-      "id": 4
-    },
-    {
-      "date": "Mon Jul 03 2023",
-      "done": false,
-      "content": "yy",
-      "category": "",
-      "id": 5
-    },
-    {
-      "duration": "0:0:5",
-      "id": 6,
-      "k": "SS"
-    },
-    {
-      "duration": "0:1 ",
-      "id": 8
-    },
-    {
-      "date": "Sun Jul 09 2023",
-      "done": false,
-      "content": "deutsch, perfekt",
-      "category": "language",
-      "mainCategory": "Habit",
-      "id": 9,
-      "duration": "0:47:15"
+      "name": "tir1402",
+      "id": 1,
+      "task": {
+        "done": false,
+        "subTitle": "..editable",
+        "content": "sss",
+        "category": "work",
+        "mainCategory": "daily"
+      }
     }
   ],
   "categories": [

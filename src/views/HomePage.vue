@@ -27,8 +27,8 @@
        
     </div>
     <div>
-            <p class="section2">click to show yearly tasks</p>
-            <Calendar/>
+            <!-- <p class="section2">click to show yearly tasks</p> -->
+            <Calendar />
         </div>
 </template>
 
@@ -74,7 +74,6 @@ import { onMounted, ref } from 'vue';
 
 
 const titleTasks = ref([])
-// const url = 'http://localhost:3000/tasks'
 
 const fetchData = () => {
     const x = fetch('http://localhost:3000/tasks', {
@@ -85,7 +84,6 @@ const fetchData = () => {
     }).then(res => { return res.json() })
         .then(json =>
             titleTasks.value = json)
-
     return x
 }
 

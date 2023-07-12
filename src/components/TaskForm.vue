@@ -5,18 +5,18 @@
             <div class="task-detail">
                 <input v-model="newTask" placeholder="Add Title ... " type="text" />
                 <textarea placeholder="Add Note ... " />
-              
+
                 <select v-model="selected">
                     <option selected value="" :key="0">Please select one ...</option>
                     <option v-for="(cat) in categoriesData" :key="cat.id" :value="cat.title">
-                        {{cat.title}}
+                        {{ cat.title }}
                     </option>
                 </select>
                 <select v-model="selectedCat">
                     <option selectedCat value="" :key="0">Please select one ...</option>
-                   
-                    <option v-for="(cat,index) in mainCategoriesData" :key="index" :value="cat">
-                        {{cat}}
+
+                    <option v-for="(cat, index) in mainCategoriesData" :key="index" :value="cat">
+                        {{ cat }}
                     </option>
                 </select>
                 <div class="button-group">
@@ -39,7 +39,7 @@ import { ref } from 'vue';
 export default {
     setup() {
         const mainCategoriesData = [
-            "Habit","Normal","daily","yearly"
+            "Habit", "Normal", "daily", "yearly"
         ]
         const selected = ref('')
         const selectedCat = ref('')
@@ -55,8 +55,7 @@ export default {
                 done: false,
                 content: newTask.value,
                 category: selected.value,
-                mainCategory:selectedCat.value
-
+                mainCategory: selectedCat.value
             });
             // save data
             postData('http://localhost:3000/tasks', {
@@ -64,11 +63,19 @@ export default {
                 done: false,
                 content: newTask.value,
                 category: selected.value,
-                mainCategory:selectedCat.value
+                mainCategory: selectedCat.value
             })
-            // .then((data) => {
-            // })
 
+            // if (selectedCat.value === 'daily') {
+            //   for (let index = 1; index < 32; index++) {
+            //     patchData(`http://localhost:3000/task/`, {
+            //        "tir1402-1":{
+            //         subTitle:"..editable",
+            //        }
+            //     })
+                
+            //   }
+            // }
             newTask.value = ''; // to clearing input after submit form
         }
 
@@ -89,6 +96,21 @@ export default {
             return response.json()
         }
 
+        const patchData = async (url = '', data = {}) => {
+            const response = await fetch(url, {
+                method: 'PATCH',
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(data)
+            })
+            return response.json()
+        }
         // const deleteData = async (url = '', id) => {
         //     const response = await fetch(url + '/' + id, {
         //         method: 'DELETE',
@@ -193,5 +215,4 @@ textarea {
     height: 10rem;
     resize: none;
 }
-
 </style>
