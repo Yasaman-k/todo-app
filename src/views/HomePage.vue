@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-
         <div class="">
             <div class="button-group">
                 <button class="title2" @click="removeAllTasks">remove all tasks</button>
                 <button class="title2" @click="markAllDone">Mark all Done</button>
             </div>
             <ul>
+                {{  titleTasks?.[0]?.done }}
                 <li v-for="todo in titleTasks" :key="todo.id">
                     <div>
                         <input type="checkbox" @click="toggleDone(todo)" />

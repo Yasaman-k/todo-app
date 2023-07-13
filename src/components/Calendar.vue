@@ -1,15 +1,10 @@
 <template>
-    <!-- {{ taskStore }} -->
-    <!-- {{ arr }}
-    {{ taskStore.titleTasks }} -->
-{{ jsonvalue}}
     <div class="grid grid-cols-7 gap-4">
-        <!-- <p>{{ tasks }} </p>
-        <p>{{ JSON.parse(tasks) }} </p> -->
-        <!-- <div v-for="(day, index) in arr" :key="index">
-
-            {{ day[0] }} {{ index + 1 }}
-        </div> -->
+        <!-- {{ arr }}kk -->
+        <div v-for="(date,index) in arr">
+        <div>{{ date }} {{ index+1 }}</div>
+        </div>
+        <!-- {{  tasks.filter(x => x.mainCategory === 'daily') }} -->
     </div>
 </template>
 <script setup>
@@ -24,14 +19,15 @@ const taskStore = useTasksStore()
 //   return taskStore.getTasks;
 // });
 const tasks = computed(() => {
-  return taskStore.tasks;
+    return taskStore.tasks;
 });
 
 // const jsonvalue = JSON.parse(tasks.value)
-console.log(tasks,"tasks");
+
 onMounted(() => {
     taskStore.fetchTasks();
-    // makeTasks()
+    makeTasks()
+    addDailyTasksToDays()
 });
 
 const monthWord = [
@@ -43,25 +39,35 @@ const monthWord = [
     { 'Thu': 'پنجشنبه' },
     { 'Fri': 'جمعه' }
 ]
-const arr = ref([])
+
 const firstDay = newDate(1402, 3, 1).toString().slice(0, 3)
 
 let startDateIndex = monthWord.findIndex((obj) => {
     return Object.keys(obj)[0] === firstDay
 })
 
-
-onMounted(() => {
-  
-})
+const arr = ref([])
 // taskStore.titleTasks[0].filter(x=>x.mainCategory==='daily')
 const makeTasks = () => {
     for (let index = 0; index < 31; index++) {
         const dayFarsi = Object.values(monthWord[startDateIndex])
-        // arr.value.push(dayFarsi)
-        arr.value.push( getTasks[0].mainCategory )
+        arr.value.push({date:dayFarsi})
+        // console.log(tasks.value.filter(x => x.mainCategory === 'daily'));
+        // const filter = tasks
+        // arr.value.push(filter)
         startDateIndex++
         if (startDateIndex === monthWord.length) startDateIndex = 0
+    }
+}
+
+const addDailyTasksToDays = () => {
+    for (let index = 0; index < arr.value.length; index++) {
+        // console.log(tasks.value.filter(x => x.mainCategory === 'daily'));
+        // console.log(;
+        console.log(arr.value[index]);
+        // const filter = tasks
+        // arr[index].value = filter
+        
     }
 }
 
