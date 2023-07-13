@@ -1,10 +1,11 @@
 <template>
     <div class="grid grid-cols-7 gap-4">
         <!-- {{ arr }}kk -->
-        <div v-for="(date,index) in arr">
-        <div>{{ date }} {{ index+1 }}</div>
+        <div v-for="(date, index) in makeTasks">
+            {{ date[0] }}
+            {{ index+1 }}
+           <div v-for="(dailyTask, index) in date[1]"> {{ dailyTask.content  }}</div>
         </div>
-        <!-- {{  tasks.filter(x => x.mainCategory === 'daily') }} -->
     </div>
 </template>
 <script setup>
@@ -22,12 +23,14 @@ const tasks = computed(() => {
     return taskStore.tasks;
 });
 
-// const jsonvalue = JSON.parse(tasks.value)
+const filteredTasks = computed(() => {
+    return taskStore.tasks.filter(x =>  x.mainCategory === 'daily')
+})
 
 onMounted(() => {
     taskStore.fetchTasks();
-    makeTasks()
-    addDailyTasksToDays()
+    // makeTasks()
+   
 });
 
 const monthWord = [
@@ -46,29 +49,23 @@ let startDateIndex = monthWord.findIndex((obj) => {
     return Object.keys(obj)[0] === firstDay
 })
 
-const arr = ref([])
+
+const xref =ref(taskStore.tasks.filter(x =>  x.mainCategory === 'daily'))
+
 // taskStore.titleTasks[0].filter(x=>x.mainCategory==='daily')
-const makeTasks = () => {
+const makeTasks =computed( () => {
+    const arr = []
     for (let index = 0; index < 31; index++) {
         const dayFarsi = Object.values(monthWord[startDateIndex])
-        arr.value.push({date:dayFarsi})
-        // console.log(tasks.value.filter(x => x.mainCategory === 'daily'));
-        // const filter = tasks
-        // arr.value.push(filter)
+        arr.push(dayFarsi)
         startDateIndex++
         if (startDateIndex === monthWord.length) startDateIndex = 0
     }
-}
-
-const addDailyTasksToDays = () => {
-    for (let index = 0; index < arr.value.length; index++) {
-        // console.log(tasks.value.filter(x => x.mainCategory === 'daily'));
-        // console.log(;
-        console.log(arr.value[index]);
-        // const filter = tasks
-        // arr[index].value = filter
-        
+    for (let index = 0; index < 31; index++) {
+        arr[index].push(taskStore.tasks.filter(x =>  x.mainCategory === 'daily'))
     }
-}
+    return arr
+})
+
 
 </script>
